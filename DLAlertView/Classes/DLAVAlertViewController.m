@@ -12,19 +12,10 @@
 
 #pragma mark Alert View
 
-@interface DLAVAlertView ()
-
-- (void)updateFrameWithAnimationOfDuration:(NSTimeInterval)duration;
-- (void)hideWithCompletion:(void (^)(void))completion;
-- (void)unhideWithCompletion:(void (^)(void))completion;
-- (void)dismissWithBackdropTap;
-
-@end
 
 @interface DLAVAlertViewController () <UITextFieldDelegate>
 
 @property (readwrite, strong, nonatomic) NSMutableArray *alertViews;
-@property (readwrite, strong, nonatomic) DLAVAlertView *currentAlertView;
 
 @property (readwrite, strong, nonatomic) UIWindow *alertWindow;
 @property (readwrite, strong, nonatomic) UIView *backgroundView;
@@ -274,6 +265,17 @@
 	if (self.currentAlertView.dismissesOnBackdropTap) {
 		[self.currentAlertView dismissWithBackdropTap];
 	}
+}
+
++ (void)dismissAllAlertViews {
+    DLAVAlertViewController *vc = [DLAVAlertViewController sharedController];
+    if (vc.alertViews > 0) {
+        for (NSInteger i = vc.alertViews.count-1; i >= 0; i--) {
+            DLAVAlertView *v = vc.alertViews[i];
+            [vc removeAlertView:v];
+        }
+    }
+    vc.currentAlertView = nil;
 }
 
 @end

@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@interface DLAVAlertView ()
+
+- (void)updateFrameWithAnimationOfDuration:(NSTimeInterval)duration;
+- (void)hideWithCompletion:(void (^)(void))completion;
+- (void)unhideWithCompletion:(void (^)(void))completion;
+- (void)dismissWithBackdropTap;
+
+@end
+
 @interface DLAVAlertViewController : UIViewController <UITextFieldDelegate>
++ (instancetype)sharedController;
++ (void)dismissAllAlertViews;
+
+@property (readwrite, strong, nonatomic) DLAVAlertView *currentAlertView;
 
 @end
