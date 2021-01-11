@@ -30,6 +30,7 @@
 	self = [super init];
 	
 	if (self) {
+        
 		_alertWindow = [self firstWindowWithLevel:UIWindowLevelAlert];
 		_alertViews = [NSMutableArray array];
 		
@@ -52,7 +53,7 @@
 		_backgroundView.multipleTouchEnabled = NO;
 		[_backgroundView addGestureRecognizer:_tapGestureRecognizer];
 		[self.view addSubview:_backgroundView];
-		
+    
 	}
 	
 	return self;
